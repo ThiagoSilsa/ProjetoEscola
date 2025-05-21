@@ -2,21 +2,25 @@
 ## Db - Escola
 # Tabela Alunos
     - id, nome, turma
-# Tabela Professores
-    - id, nome, disciplina, "turmas que dá aula"
+        - Add aluno; ok
+        - Listar alunos; ok
+        - Excluir aluno; ok
 # Tabela Turma (Sala)
     - id, nome ("912"), serie(ano)
+        - Add turma; ok
+        - Mostrar turmas; ok
+        - Excluir turmas; ok
+
+# Tabela Professores
+    - id, nome, disciplina, "turmas que dá aula"
 
 
-## Menu
+## Menu ADM: OK
+- Listar tabelas; ok
+- Selecionar tabela; ok
+- Excluir tabelas; ok
 
-- Listar tabelas
-- Selecionar tabela;
-- Listar dados (SELECT)
-    - 
-    - 
-- Inserir dados (INSERT)
-- Deletar dados (DELETE)
+
 
 
 ## Conceitos utilizados
@@ -26,3 +30,14 @@
 - Herança;
 - Agregação;
 - Composição.
+
+
+# primeiro: CRUD
+- CREATE
+- READ
+- UPDATE
+- DELETE
+
+
+## Melhorias:
+    - Excluir turmas, não precisa dos dados primários

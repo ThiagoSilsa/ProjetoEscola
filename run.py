@@ -1,28 +1,25 @@
-# importing sqlite3
-import sqlite3
+from menus.menu_adm.menu_adm import menu_principal_adm
+from menus.menu_alunos.menu_alunos import menu_alunos
+from menus.menu_turmas.menu_turmas import menu_turmas
+# Aqui será o menu só backend
 
-# Stabilishing connection with database
-# ".connect" is a method inside sqlite3
-
-# var cnct will be used as a cannection variable
-cnct = sqlite3.connect('zerotwoschool')
-
-# cursos is better ´cause we can send an receive informations
-# cursor will receive info from database
-
-cursor = cnct.cursor()
-
-# Testing:
-
-cursor.execute(
-    """
-        CREATE TABLE IF NOT EXISTS students
-        (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT NOT NULL,
-        class TEXT NOT NULL
-        )
-    """
-)
-cnct.commit()
-cnct.close()
+while True:
+    print()
+    print("-" * 12 + " Menu principal " + "-" * 12)
+    print(
+        "Escolha a opção desejada:\n1 - Acessar Alunos\n2 - Acessar Turmas\n3 - Menu ADM  \n4 - Sair")
+    try:
+        opt = int(input(">>"))
+        if opt == 1:
+            menu_alunos()
+        elif opt == 2:
+            menu_turmas()
+        elif opt == 3:
+            menu_principal_adm()
+        elif opt == 4:
+            print("Finalizando programa...")
+            break
+        else:
+            print("Opção inválida!")
+    except:
+        print("Algo deu errado!")
