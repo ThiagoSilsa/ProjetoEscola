@@ -1,5 +1,5 @@
 from db.database import get_connection
-import sqlite3
+
 
 class Aluno():
     def __init__(self, nome: str, turma: int):
@@ -19,17 +19,19 @@ class Aluno():
                 )
         conn.commit()
         conn.close()
+
     # Método estático pois pode ser acessado mesmo sem informar parâmetros como nome e turma_id
     @staticmethod
-    def excluir_aluno(id_exclusao):
+    def excluir(aluno_id):
         conn = get_connection()
         cursor = conn.cursor()
-        cursor.execute("DELETE FROM alunos WHERE id = ?", (id_exclusao,))
+        cursor.execute("DELETE FROM alunos WHERE id = ?", (aluno_id,))
         conn.commit()
         conn.close()
     
     @staticmethod
-    def listar_alunos():
+    # Buscando todos os alunos no banco de dados
+    def buscar_todos():
         conn = get_connection()
         cursor = conn.cursor()
         # Irá receber os alunos em forma de lista
@@ -37,5 +39,29 @@ class Aluno():
         resultado = cursor.fetchall()
         conn.close()
         return resultado
-
-
+    
+    @staticmethod
+    # Verificando a existencia do aluno
+    def existe(aluno_id):
+        conn = get_connection()
+        cursor = conn.cursor()
+        cursor.execute(
+            "SELECT * FROM alunos WHERE id = ?",(aluno_id,)
+            )
+        resultado = cursor.fetchone()
+        conn.close()
+        # is not none converte o resultado em valor booleano
+        # caso o resultado for none (não existe) retornará False
+        # Se existir retornará True
+        return resultado is not None
+    
+    @staticmethod
+    def alterar_turma(aluno_id, turma_id):
+        conn = get_connection()
+        cursor = conn.cursor()
+        cursor.execute(
+            "UPDATE alunos SET turma_id = ? WHERE id = ?",(turma_id, aluno_id)
+            )
+        conn.commit()
+        conn.close()
+    

@@ -8,28 +8,44 @@ def menu_alunos():
         print("1 - Listar alunos")
         print("2 - Adicionar aluno")
         print("3 - Excluir aluno")
-        print("4 - Voltar")
-        try:
-            opt = int(input(">>"))
-            if opt == 1:
-                aluno = Alunos("0", 0)
-                aluno.listar_alunos()
-            elif opt == 2:
-                nome = input('Digite o nome do aluno:')
-                nova_turma = Turma("0", "0")
-                nova_turma.listar_turmas()
-                turma = int(input('Digite o id da turma do aluno:'))
-                novo_aluno = Alunos(nome, turma)
-                novo_aluno.salvar_no_banco()
+        print("4 - Atualizar turma do aluno")
+        print("5 - Voltar")
 
-            elif opt == 3:
-                aluno = Alunos("0", 0)
-                aluno.listar_alunos()
-                aluno.excluir_aluno()
-            elif opt == 4:
-                print("Finalizando programa...")
-                break
-            else:
-                print("Opção inválida!")
-        except:
-            print("Algo deu errado!")
+        opt = int(input(">>"))
+        if opt == 1:
+            from controllers.alunos_controller import listar_alunos
+            listar_alunos()
+        elif opt == 2:
+            # Só importa quando for realmente utilizar, é bom pois esse while vai ficar repetindo
+            from controllers.alunos_controller import cadastrar_aluno
+            cadastrar_aluno()
+        elif opt == 3:
+            # É importante listar os alunos antes de excluir
+            from controllers.alunos_controller import listar_alunos
+            listar_alunos()
+            from controllers.alunos_controller import excluir_aluno
+            excluir_aluno()
+        elif opt == 4:
+            # Alunos disponíveis
+            from controllers.alunos_controller import listar_alunos
+            listar_alunos()
+            # Turmas disponíveis
+            from controllers.turmas_controller import listar_turmas
+            listar_turmas()
+            from controllers.alunos_controller import alterar_turma
+            alterar_turma()
+        elif opt == 5:
+            print("Voltando ao menu principal!")
+            break
+        else:
+            print("Opção inválida!")
+
+
+def mostrar_lista_alunos(lista_de_alunos):
+    if not lista_de_alunos:
+        print("Nenhum aluno cadastrado!")
+        return
+    else:
+        print("Lista de Alunos:")
+        for aluno in lista_de_alunos:
+            print(f'ID: {aluno[0]} | Nome: {aluno[1]} | Turma ID: {aluno[2]}')

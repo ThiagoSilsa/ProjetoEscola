@@ -40,9 +40,10 @@
 
 
 ## Melhorias:
-    - Reorganização das pastas;
-    - Implementação de métodos estáticos ou função externa;
+    - Reorganização das pastas; ok
+    - Implementação de métodos estáticos ou função externa; ok
     - Refatoração de try/except;
-    - Singular para classes e plural para tabelas;
+    - Singular para classes e plural para tabelas; ok
+    - Nomes mais assertivos; ok
     - Docstrings;
-    - Padronizar com Black;
+    - Padronizar com Black; ok

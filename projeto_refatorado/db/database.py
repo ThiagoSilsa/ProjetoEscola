@@ -2,5 +2,6 @@
 
 import sqlite3
 
+
 def get_connection():
-    return sqlite3.connect("zerodois_banco.db")
+    return sqlite3.connect("projeto_refatorado/db/zerodois_banco.db")
