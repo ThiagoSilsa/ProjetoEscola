@@ -9,7 +9,7 @@ def menu_alunos():
         print("2 - Adicionar aluno")
         print("3 - Excluir aluno")
         print("4 - Atualizar turma do aluno")
-        print("5 - Voltar")
+        print("0 - Voltar")
 
         opt = int(input(">>"))
         if opt == 1:
@@ -34,7 +34,7 @@ def menu_alunos():
             listar_turmas()
             from controllers.alunos_controller import alterar_turma
             alterar_turma()
-        elif opt == 5:
+        elif opt == 0:
             print("Voltando ao menu principal!")
             break
         else:

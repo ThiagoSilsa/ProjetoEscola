@@ -8,7 +8,7 @@ def menu_turmas():
         print("1 - Listar turmas")
         print("2 - Adicionar turma")
         print("3 - Excluir turma")
-        print("4 - Voltar")
+        print("0 - Voltar")
 
         opt = int(input(">>"))
         if opt == 1:
@@ -22,7 +22,7 @@ def menu_turmas():
             listar_turmas()
             from controllers.turmas_controller import excluir_turma
             excluir_turma()
-        elif opt == 4:
+        elif opt == 0:
             print("Voltando ao menu principal...")
             break
         else:
