@@ -40,4 +40,9 @@
 
 
 ## Melhorias:
-    - Excluir turmas, não precisa dos dados primários
+    - Reorganização das pastas;
+    - Implementação de métodos estáticos ou função externa;
+    - Refatoração de try/except;
+    - Singular para classes e plural para tabelas;
+    - Docstrings;
+    - Padronizar com Black;

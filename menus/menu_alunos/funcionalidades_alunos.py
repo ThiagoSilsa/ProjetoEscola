@@ -44,9 +44,6 @@ class Alunos():
         finally:
             conexao.close()
 
-    def atualizar_turma(self):
-        print(f'Atualizando a turma do aluno{self.__nome}')
-
     def listar_alunos(self):
         conexao = sqlite3.connect('zerodois_banco.db')
         cursor = conexao.cursor()

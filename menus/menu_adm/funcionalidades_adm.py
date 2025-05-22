@@ -1,5 +1,6 @@
 import sqlite3
 
+
 def listar_tabelas():
     lista_tabelas = []
     conexao = sqlite3.connect('zerodois_banco.db')
@@ -14,8 +15,8 @@ def listar_tabelas():
         for i, tabela in enumerate(tabelas):
             print(f'Índice {i} | Tabela: {tabela[0]}')
             tabela = {
-                "id" : i,
-                "nome" : tabela[0]
+                "id": i,
+                "nome": tabela[0]
             }
             lista_tabelas.append(tabela)
 
@@ -24,30 +25,47 @@ def listar_tabelas():
     conexao.close()
     return lista_tabelas
 
+
 def criar_tabela_turmas():
     conexao = sqlite3.connect('zerodois_banco.db')
     cursor = conexao.cursor()
-    cursor.execute(
-        """
-            CREATE TABLE IF NOT EXISTS turmas
-            (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            nome TEXT NOT NULL,
-            serie TEXT NOT NULL
-            )
+    cursor.execute("SELECT name FROM sqlite_master WHERE type='table' and NAME = 'turmas';")
+    tabela = cursor.fetchone()
 
-            """
-    )
-    conexao.commit()
-    conexao.close()
+    try:
+        if tabela:
+            print('Tabela já existe!')
+        else:
+            cursor.execute(
+                """
+                CREATE TABLE IF NOT EXISTS turmas
+                (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                nome TEXT NOT NULL,
+                serie TEXT NOT NULL
+                )
+
+                """)
+            print('Tabela Turmas criada com sucesso!')
+    except:
+        print('Algo deu errado!')
+    finally:
+        conexao.commit()
+        conexao.close()
+
 
 def criar_tabela_alunos():
     conexao = sqlite3.connect('zerodois_banco.db')
     cursor = conexao.cursor()
-
-    # O id da turma depende se a turma com o id existe!
-    cursor.execute(
-        """
+    cursor.execute("SELECT name FROM sqlite_master WHERE type='table' and NAME = 'alunos';")
+    tabela = cursor.fetchone()
+    try:
+        if tabela:
+            print('Tabela já existe!')
+        else:
+            # O id da turma depende se a turma com o id existe!
+            cursor.execute(
+                """
                 CREATE TABLE IF NOT EXISTS alunos
                 (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -55,11 +73,14 @@ def criar_tabela_alunos():
                 turma_id INTEGER NOT NULL,
                 FOREIGN KEY (turma_id) REFERENCES turmas(id)
                 )
-            """
-    )
+                """)
+            print('Tabela Alunos criada com sucesso!')
+    except:
+        print('Algo deu errado!')
+    finally:
+        conexao.commit()
+        conexao.close()
 
-    conexao.commit()
-    conexao.close()
 
 def adicionar_tabela():
     while True:
@@ -68,11 +89,9 @@ def adicionar_tabela():
                 'Qual tabela deseja adicionar?\n1 - Tabela alunos\n2 - Tabela Turmas\n3 - Voltar'))
             if opt == 1:
                 criar_tabela_alunos()
-                print('Tabela alunos criada com sucesso!')
                 break
             elif opt == 2:
                 criar_tabela_turmas()
-                print('Tabela turmas criada com sucesso!')
                 break
             elif opt == 3:
                 print('Voltando ao menu adm...')
@@ -82,9 +101,10 @@ def adicionar_tabela():
         except:
             print("Tabela já existente")
 
+
 def excluir_tabelas():
     while True:
-        lista_tabelas =  listar_tabelas()
+        lista_tabelas = listar_tabelas()
         try:
             print()
             id_remover = int(input(
@@ -102,5 +122,3 @@ def excluir_tabelas():
 
         except:
             print("Algo deu errado!")
-
-
