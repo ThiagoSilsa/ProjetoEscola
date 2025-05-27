@@ -47,3 +47,4 @@
     - Nomes mais assertivos; ok
     - Docstrings;
     - Padronizar com Black; ok
+    - Corrigir com try/except os menus
