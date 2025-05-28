@@ -1,0 +1,22 @@
+<h3>Lista de Turmas</h3>
+
+<table class="table">
+  <thead>
+    <tr>
+
+      <th scope="col">ID:</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Série</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for turma in turmas %}
+    <tr>
+
+      <td>{{turma[0]}}</td>
+      <td>{{turma[1]}}</td>
+      <td>{{turma[2]}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>

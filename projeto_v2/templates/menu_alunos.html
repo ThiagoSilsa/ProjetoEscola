@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2 >Menu alunos!</h2>
+    <!-- deve ser informado todo o caminho até mesmo o /coord  -->
+    <a href="{{url_for('coord.menu_coord')}}">Voltar</a> |
+    <a href="#" onclick="injetorHTML('/coord/alunos/listar', 'lista-alunos')">Listar alunos</a> |
+    <a href="#" onclick="injetorHTML('/coord/turmas/buscar-turmas', 'conteudo-dinamico')">Buscar alunos</a> |
+    <a href="#" onclick = "injetorHTML('/coord/alunos/new', 'conteudo-dinamico')">Adicionar novo aluno</a> |
+    <a href="#" onclick="injetorHTML('/coord/alunos/del', 'conteudo-dinamico')">Deletar aluno</a>
+
+    <hr>
+
+
+    <div id="conteudo-dinamico">
+    </div>
+
+
+
+    <div id="lista-alunos">
+    </div>
+    
+   <script src="{{ url_for('static', filename='injetor.js') }}"></script>
+    </body>
+
+</html>
+

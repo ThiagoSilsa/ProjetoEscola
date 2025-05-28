@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body onload="injetorHTML('/coord/turmas/listar', 'lista-turmas')">
+    <h2 >Menu Turmas!</h2>
+    <!-- deve ser informado todo o caminho até mesmo o /coord  -->
+    <a href="{{url_for('coord.menu_coord')}}">Voltar</a> |
+    <a href="#" onclick="injetorHTML('/coord/turmas/listar', 'lista-turmas')">Buscar turmas</a> |
+    <a href="#" onclick = "injetorHTML('/coord/turmas/new', 'conteudo-dinamico')">Adicionar nova turma</a> |
+    <a href="#" onclick="injetorHTML('/coord/turmas/del', 'conteudo-dinamico')">Deletar turma</a>
+
+    <hr>
+
+
+    <div id="conteudo-dinamico">
+    </div>
+    <div id="lista-turmas"></div>
+    <script src="{{ url_for('static', filename='injetor.js') }}"></script>
+    </body>
+
+</html>
+

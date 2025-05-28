@@ -21,8 +21,6 @@
 - Excluir tabelas; ok
 
 
-
-
 ## Conceitos utilizados
 - Solid (S) = Apenas uma funcionalidade por método ou classe;
 - Solid (O) = Aberto a expansão, fechado a modificação;
@@ -38,8 +36,7 @@
 - UPDATE
 - DELETE
 
-
-## Melhorias:
+## Primeiras Melhorias:
     - Reorganização das pastas; ok
     - Implementação de métodos estáticos ou função externa; ok
     - Refatoração de try/except;
@@ -48,3 +45,29 @@
     - Docstrings;
     - Padronizar com Black; ok
     - Corrigir com try/except os menus
+
+# Ordem:
+    1 - Flask
+    2 - PeeWee
+
+    
+# Aplicação de Flask para o front end
+    # Rotas:
+        - Home ('/') (GET) - Página principal!
+        
+
+# Front-End
+    Páginas:
+        - Home: 
+            - Redes sociais;
+            - Sobre a escola;
+            - Portal do aluno;
+            - Portal adm;
+            - Unidades;
+            - Informações importantes embaixo.
+        - Menu adm
+            - Add aluno, turma, professor....
+        - Menu Aluno:
+            - Já é aluno?
+            - Acessar suas aulas
+
