@@ -32,13 +32,10 @@ def listar_alunos():
 # _________________________________________________________________
 @coord_route.route('/alunos/busca-por-turma', methods=['POST'])
 def listar_alunos_turma():
-    id = request.form.get('id')
-    # Chegou o id da turma aqui
-    # Buscar do back end a lista de alunos da turma em questão
-    resultado = Aluno.buscar_por_turma(id)
-    # Recebi lista de alunos
-    # Devolvi lista de alunos
-    return render_template('partials/aluno/aluno_por_turma.html', alunos = resultado)
+    turma_id = request.form.get('id')
+    resultado = Aluno.buscar_por_turma(turma_id)
+    lista_turmas = Turma.buscar_todas()
+    return render_template('partials/aluno/select_e_tabela.html', alunos=resultado, turmas=lista_turmas, turma_id=int(turma_id))
 
 
 

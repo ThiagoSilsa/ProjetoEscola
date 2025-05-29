@@ -1,0 +1,58 @@
+<h3>Lista de Alunos por Turma</h3>
+
+<p>Selecione a turma:</p>
+<form id="form-select-turma">
+    <select name="id" id="id">
+        {% for turma in turmas %}
+            <option value="{{ turma[0] }}"
+                {% if turma[0] == turma_id %}selected{% endif %}>
+                {{ turma[1] }}
+            </option>
+        {% endfor %}
+    </select>
+    <br>
+    <button type="submit">Pesquisar!</button>
+</form>
+
+{% if alunos %}
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Aluno</th>
+      <th>Turma ID</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for aluno in alunos %}
+    <tr>
+      <td>{{ aluno[0] }}</td>
+      <td>{{ aluno[1] }}</td>
+      <td>{{ aluno[2] }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endif %}
+
+<script>
+document.getElementById('form-select-turma').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const turmaId = document.getElementById('id').value;
+
+    fetch('/coord/alunos/busca-por-turma', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: 'id=' + encodeURIComponent(turmaId)
+    })
+    .then(response => response.text())
+    .then(html => {
+        document.getElementById('conteudo-dinamico').innerHTML = html;
+    })
+    .catch(error => {
+        console.error('Erro ao buscar alunos:', error);
+    });
+});
+</script>
